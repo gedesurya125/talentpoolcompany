@@ -1,25 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import AppLayout from "./components/appLayout/AppLayout";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import DashboardPage from "./pages/dashboard/DashboardPage";
+import TalentsPage from "./pages/talents/TalentsPage";
+import PicPage from "./pages/pic/PicPage";
+import CompanyPage from "./pages/company/CompanyPage";
+import TrackerPage from "./pages/tracker/TrackerPage";
 
+
+
+const routing = [
+  {
+    exact: true,
+    path: '/',
+    component: DashboardPage
+  },
+  {
+    exact: true,
+    path: '/talent',
+    component: TalentsPage
+  },
+  {
+    exact: true,
+    path: '/pic',
+    component: PicPage
+  },
+  {
+    exact: true,
+    path: '/company',
+    component: CompanyPage
+  },
+  {
+    exact: true,
+    patch: '/tracker',
+    component: TrackerPage
+  },
+
+]
+
+const renderRouting = routing.map((route, index) => <Route key={index} {...route}/>);
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <AppLayout>
+        <Switch>
+          {renderRouting}
+        </Switch>
+      </AppLayout>
+    </BrowserRouter>
   );
 }
 
