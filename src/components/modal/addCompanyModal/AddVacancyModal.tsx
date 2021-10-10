@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+// import React, {useState} from 'react'
 import CommonModal from '../commonMoal/CommonModal'
-import {JobVacancyType} from '../../../redux/apis/companyAPI';
+// import {JobVacancyType} from '../../../redux/apis/companyAPI';
 import { TextField } from '@mui/material';
 
 
@@ -9,13 +9,13 @@ interface Props {
   handleClose: () => void
 }
 const AddVacancyModal = ({open, handleClose}: Props) => {
-  const [vacancy, setVacancy] = useState<JobVacancyType>({
-    dateCreated: "",
-    description: "",
-    hiringStatus: false,
-    requirement: [],
-    roleOpen: []
-  })
+  // const [vacancy, setVacancy] = useState<JobVacancyType>({
+  //   dateCreated: "",
+  //   description: "",
+  //   hiringStatus: false,
+  //   requirement: [],
+  //   roleOpen: []
+  // })
   return (
     <CommonModal open={open} title={"Add Vacancy"} handleClose={handleClose}>
 
