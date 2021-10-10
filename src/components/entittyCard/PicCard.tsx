@@ -7,7 +7,7 @@ import { IconButton, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import { posStyle } from "./commonStyle";
+import { posStyle, lgPosStyle } from "./commonStyle";
 import { selectPhotoSource } from "../../functions/photoSource";
 import { baseURL } from "../../redux/apis/setupAPI";
 import { useDispatch } from "react-redux";
@@ -24,6 +24,9 @@ const CardContainer = styled("div")(({ theme }) => ({
   display: "flex",
   gap: "10px",
   alignItems: "center",
+  [theme.breakpoints.up('lg')]:{
+    ...lgPosStyle
+  },
   "& .user-photo": {
     width: "100px",
     lineHeight: "0",

@@ -21,7 +21,7 @@ const TrackerPage = () => {
   const tracker = useSelector((state: RootState) => state.tracker);
 
   const renderTrackerCard = () => {
-    if (tracker.loading)
+    if (tracker.loading || (!Boolean(tracker.data.dataTracker)))
       return [1, 2, 3, 4, 5, 6, 7, 8].map((skeleton) => (
         <MasonryItem key={skeleton}>
           <Skeleton
@@ -34,7 +34,7 @@ const TrackerPage = () => {
               height: "250px",
               width: "100%",
               padding: 0,
-              marginTop: 0
+              marginTop: 0,
             }}
           />
         </MasonryItem>
@@ -50,7 +50,11 @@ const TrackerPage = () => {
 
   return (
     // <TrackerContainer>
-    <Masonry sx={{ overflow: "visible" }} columns={3} spacing={1}>
+    <Masonry
+      sx={{ overflow: "visible" }}
+      columns={{xs:1, md:2, lg:3}}
+      spacing={1}
+    >
       {renderTrackerCard()}
     </Masonry>
 

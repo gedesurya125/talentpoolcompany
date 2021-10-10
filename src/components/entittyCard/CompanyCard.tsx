@@ -21,7 +21,7 @@ const CompanyCardContainer = styled("div")(({ theme }) => ({
   // padding: 0,
   // boxSizing: '',
   "& .company-card-header": {
-    height: "100px",
+    // height: "100px",
     width: "100%",
     // objectFit: "cover",
     overflow: "hidden",
@@ -29,9 +29,11 @@ const CompanyCardContainer = styled("div")(({ theme }) => ({
     marginBottom: "0.5em",
     "& img": {
       width: "100%",
+      height: "100px",
+
       display: "block",
       objectFit: "cover",
-      objectPosition: "center -140px",
+      // objectPosition: "center -140px",
     },
   },
   "& .company-card-content": {
@@ -51,9 +53,9 @@ const CompanyCardContainer = styled("div")(({ theme }) => ({
   "& .company-vacancy": {
     backgroundColor: "black",
     borderRadius: "4px",
-    '& .vacancy-details':{
-      padding: '10px'
-    }
+    "& .vacancy-details": {
+      padding: "10px",
+    },
   },
 }));
 
@@ -113,7 +115,7 @@ const CompanyCard = (props: CompanyCardTypes) => {
               Show Vacancy
             </Button>
             <div className="vacancy-details">
-              <VacancyDisplay jobVacancy={props.jobVacancy}/>
+              <VacancyDisplay jobVacancy={props.jobVacancy} />
             </div>
           </Collapse>
         </CompanyCardContainer>

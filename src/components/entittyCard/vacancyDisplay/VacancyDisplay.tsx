@@ -10,9 +10,9 @@ interface Props {
 
 //===================MAIN COMPONENT ====================
 const VacancyDisplay = (propslist:Props) => {
-  console.log('isi dari jobVacancy',propslist.jobVacancy)
+  // console.log('isi dari jobVacancy',propslist.jobVacancy)
 
-  const renderVacancies = propslist.jobVacancy.map((vacancy:any) => <VacancyDetails vacancy={vacancy}/>)
+  const renderVacancies = propslist.jobVacancy.map((vacancy:any, index:number) => <VacancyDetails key={index} vacancy={vacancy}/>)
   return (
     <>
       {renderVacancies}

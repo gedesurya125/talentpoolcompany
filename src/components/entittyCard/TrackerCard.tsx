@@ -15,7 +15,7 @@ import { baseURL } from "../../redux/apis/setupAPI";
 
 const CardContainer = styled("div")(({ theme }) => ({
   ...posStyle,
-  width: '100%',
+  width: "100%",
 
   marginTop: 0,
   background: appColor.backgroundColor.primary,
@@ -42,10 +42,13 @@ const UserContainer = styled("div")(({ theme }) => ({
   gap: "10px",
   alignItems: "center",
   "& .user-photo": {
-    width: "60px",
+    // width: "60px",
     lineHeight: "0",
     "& img": {
-      width: "100%",
+      // width: "100%",
+      width: "60px",
+      height: "60px",
+      objectFit: 'cover',
       borderRadius: "10px",
     },
   },
@@ -161,7 +164,7 @@ const TrackerCard = ({ tracker }: Props) => {
       return (
         <div className="company">
           <div className="company-photo">
-            <img src={selectPhotoSource(pics.photo, baseURL) } alt="..." />
+            <img src={selectPhotoSource(pics.photo, baseURL)} alt="..." />
           </div>
           <div className="company-details">
             <Typography>{`${pics.fullname}`}</Typography>
@@ -175,39 +178,39 @@ const TrackerCard = ({ tracker }: Props) => {
   return (
     <MasonryItem>
       <Box>
-      <CardContainer>
-        <UserContainer>
-          <div className="user-photo">
-            <img src={selectPhotoSource(talents?.photo, baseURL)} alt="..." />
-          </div>
-          <div className="user-detail">{renderUserDetail}</div>
-        </UserContainer>
-        <InfoTracker>
-          <Typography variant="h6" align="center">
-            Tracker Info
-          </Typography>
-          <Typography fontWeight="bold">Company :</Typography>
-          {renderCompanyData()}
-          <Divider />
+        <CardContainer>
+          <UserContainer>
+            <div className="user-photo">
+              <img src={selectPhotoSource(talents?.photo, baseURL)} alt="..." />
+            </div>
+            <div className="user-detail">{renderUserDetail}</div>
+          </UserContainer>
+          <InfoTracker>
+            <Typography variant="h6" align="center">
+              Tracker Info
+            </Typography>
+            <Typography fontWeight="bold">Company :</Typography>
+            {renderCompanyData()}
+            <Divider />
 
-          <Typography fontWeight="bold">PIC :</Typography>
-          {renderPicData()}
-          <Divider />
+            <Typography fontWeight="bold">PIC :</Typography>
+            {renderPicData()}
+            <Divider />
 
-          <Typography fontWeight="bold">Status:</Typography>
-          <Typography
-            align="center"
-            sx={{
-              display: "block",
-              padding: 1,
-              backgroundColor: selectStatusColor(status),
-              borderRadius: "5px",
-            }}
-          >
-            {status}
-          </Typography>
-        </InfoTracker>
-      </CardContainer>
+            <Typography fontWeight="bold">Status:</Typography>
+            <Typography
+              align="center"
+              sx={{
+                display: "block",
+                padding: 1,
+                backgroundColor: selectStatusColor(status),
+                borderRadius: "5px",
+              }}
+            >
+              {status}
+            </Typography>
+          </InfoTracker>
+        </CardContainer>
       </Box>
     </MasonryItem>
   );

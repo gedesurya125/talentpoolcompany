@@ -31,14 +31,12 @@ const CompanyPage = () => {
               height: "250px",
               width: "100%",
               padding: 0,
-              marginTop: 0
+              marginTop: 0,
             }}
           />
         </MasonryItem>
       ));
-    if(!companies.data.dataCompany?.length) return(
-      <div></div>
-    )
+    if (!companies.data.dataCompany?.length) return <div></div>;
     return companies.data.dataCompany?.map((comp: any, index: number) => (
       <CompanyCard
         key={index}
@@ -56,7 +54,11 @@ const CompanyPage = () => {
   }, [dispatch]);
   return (
     // <Box width="100%" height="100vh">
-    <Masonry sx={{overflow: 'visible'}} columns={3} spacing={1}>
+    <Masonry
+      sx={{ overflow: "visible" }}
+      columns={{ xs: 1, md: 2, lg: 3 }}
+      spacing={1}
+    >
       {renderCompanyCard(company)}
     </Masonry>
     // </Box>

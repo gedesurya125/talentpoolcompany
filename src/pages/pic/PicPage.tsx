@@ -30,6 +30,10 @@ const PicPage = () => {
     if(pic.loading) return (
       [1,2,3,4,5,6,7,8,9,10,11,12].map(skeleton => <Skeleton key={skeleton} variant="rectangular" sx={{
         ...posStyle,
+        width: {
+          xs: '100%',
+          lg: '32.7%'
+        },
         height: '120px',
         marginTop: 0,
       }}/>)
