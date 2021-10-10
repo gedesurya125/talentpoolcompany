@@ -5,17 +5,18 @@ import {styled} from '@mui/material/styles'
 
 const UnorderedList = styled('ul')(
   ({theme}) => ({
-    marginBlockStart: '0.5em',
+    marginBlockStart: '0.1em',
     marginBlockEnd: '0px',
+    paddingLeft: '2em'
   })
 )
 
 interface ShowListProps {
-  list: any[]
+  items: any[]
 }
-const ItemList = ( {list = []}: ShowListProps) => {
+const ListedInfo = ( {items = []}: ShowListProps) => {
   const renderItemList = () => {
-    return list.map((item, index) => {
+    return items.map((item, index) => {
       return <li key={index}>{item}</li>
     })
   }
@@ -26,6 +27,6 @@ const ItemList = ( {list = []}: ShowListProps) => {
   )
 }
 
-export default ItemList
+export default ListedInfo
 
 

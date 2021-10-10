@@ -1,20 +1,19 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCompanyAction } from "../../redux/actions/companyAction";
-import { styled } from "@mui/material/styles";
+// import { styled } from "@mui/material/styles";
 import type { RootState } from "../../redux/rootReducer";
 import { Skeleton } from "@mui/material";
 import { posStyle } from "../../components/entittyCard/commonStyle";
 import CompanyCard from "../../components/entittyCard/CompanyCard";
 import Masonry from "@mui/lab/Masonry";
 import MasonryItem from "@mui/lab/MasonryItem";
-import { Box } from "@mui/lab/node_modules/@mui/system";
 
-const CompanyContainer = styled("div")(({ theme }) => ({
-  display: "flex",
-  flexWrap: "wrap",
-  gap: "10px",
-}));
+// const CompanyContainer = styled("div")(({ theme }) => ({
+//   display: "flex",
+//   flexWrap: "wrap",
+//   gap: "10px",
+// }));
 
 const CompanyPage = () => {
   const dispatch = useDispatch();
@@ -31,8 +30,8 @@ const CompanyPage = () => {
               ...posStyle,
               height: "250px",
               width: "100%",
-              padding: 0
-              // marginTop: '0px'
+              padding: 0,
+              marginTop: 0
             }}
           />
         </MasonryItem>

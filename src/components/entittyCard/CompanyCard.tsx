@@ -9,9 +9,12 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import LanguageIcon from "@mui/icons-material/Language";
 import MasonryItem from "@mui/lab/MasonryItem";
 import VacancyDisplay from "./vacancyDisplay/VacancyDisplay";
+import { selectPhotoSource } from "../../functions/photoSource";
+import { baseURL } from "../../redux/apis/setupAPI";
 
 const CompanyCardContainer = styled("div")(({ theme }) => ({
   ...posStyle,
+  marginTop: 0,
   minHeight: "300px",
   width: "100%",
   backgroundColor: appColor.backgroundColor.primary,
@@ -74,7 +77,7 @@ const CompanyCard = (props: CompanyCardTypes) => {
       <Box>
         <CompanyCardContainer>
           <div className="company-card-header">
-            <img src={props.photo} alt="..." />
+            <img src={selectPhotoSource(props.photo, baseURL)} alt="..." />
           </div>
           <div className="company-card-content">
             <Typography variant="h5" align="center" fontWeight="bold">

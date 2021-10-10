@@ -10,7 +10,8 @@ import Typography from "@mui/material/Typography";
 import DrawerContent from "./DrawerContent";
 import * as appColor from "../../settings/appColor";
 import { Avatar } from "@mui/material";
-import AddUserModal from "../modal/AddUserModal";
+import AddTalentModal from "../modal/addTalentModal/AddTalentModal";
+import AddPicModal from "../modal/addPicModal/AddPicModal";
 import UserMenu from "./UserMenu";
 import type { AppModal } from "./UserMenu";
 
@@ -168,18 +169,19 @@ const AppLayout = (props: Props) => {
         <Toolbar />
         {props.children}
       </Box>
-      <AddUserModal
+      <AddTalentModal
         open={modalOpen.addTalentModal}
         handleClose={() => handleCloseModal("addTalentModal")}
       />
-      <AddUserModal
+      <AddPicModal
         open={modalOpen.addPicModal}
         handleClose={() => handleCloseModal("addPicModal")}
       />
-      <AddUserModal
+      <AddTalentModal
         open={modalOpen.addCompanyModal}
         handleClose={() => handleCloseModal("addCompanyModal")}
       />
+
       <UserMenu
         anchorEl={anchorEl}
         handleClose={handleMenuClose}

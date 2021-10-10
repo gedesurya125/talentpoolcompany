@@ -38,7 +38,7 @@ export const dashBoardCards = [
 
   },
   {
-    title: "Accept",
+    title: "Accepted",
     Icon: ThumbUpIcon,
     talents: 11,
     color: '#4bb500'

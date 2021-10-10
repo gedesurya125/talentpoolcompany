@@ -131,4 +131,20 @@ const talentStatusList = [
   { id: 6, name: "Rejected" },
 ];
 
-
+const examplePostTalents = {
+  photo:
+    "https://i1.wp.com/jejuhydrofarms.com/wp-content/uploads/2020/05/blank-profile-picture-973460_1280.png?fit=300%2C300&ssl=1",
+  education: ["SD"],
+  username: "Bomi",
+  fullname: "Bomi saputra",
+  address: "KSB",
+  phone: "324111125",
+  experience: [
+    {
+      role: "sales",
+      company: "indoWarung",
+      startDate: "2021-09-02",
+      endDate: "2021-01-01",
+    },
+  ],
+};

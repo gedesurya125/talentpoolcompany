@@ -1,5 +1,5 @@
 //This is common style for card. this requiere flex container
-import * as appColor from '../../settings/appColor'
+// import * as appColor from '../../settings/appColor'
 export const posStyle = { //style for md
   width: "32.7%",
   borderRadius: "10px",

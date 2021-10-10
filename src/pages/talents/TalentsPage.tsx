@@ -27,15 +27,17 @@ const TalentsPage = () => {
   const renderTalentCard = () =>{
 
     if(talent.loading) return (
-      [1,2,3,4,5,6,7,8].map(skeleton => <Skeleton key={skeleton} variant="rectangular" sx={{
+      [1,2,3,4,5,6,7,8,9,10,11,12].map(skeleton => <Skeleton key={skeleton} variant="rectangular" sx={{
         ...posStyle,
-        height: '120px'
+        height: '120px',
+        marginTop: 0
       }}/>)
     )
     return talent.data.dataTalent?.map((theTalent:any) => {
       return (
         <TalentsCard
           key={theTalent._id}
+          id={theTalent._id}
           nickName={theTalent.username}
           photo={theTalent.photo}
           address={theTalent.address}
@@ -45,7 +47,7 @@ const TalentsPage = () => {
     });
 
   } 
-  console.log('data Talent', talent.data.dataTalent);
+  // console.log('data Talent', talent.data.dataTalent);
   return (
   <TaletsContainer sx={{gap: '10px'}}>
     {renderTalentCard()}

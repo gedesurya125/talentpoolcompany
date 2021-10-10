@@ -1,24 +1,18 @@
+//AFTER COPYING TALENTS CARD NOT USABLE YET
+
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import * as appColor from "../../settings/appColor";
 import { IconButton, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import HomeIcon from "@mui/icons-material/Home";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { posStyle } from "./commonStyle";
 import { selectPhotoSource } from "../../functions/photoSource";
 import { baseURL } from "../../redux/apis/setupAPI";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useDispatch } from "react-redux";
-import { removeTalentAction } from "../../redux/actions/talentAction";
-//This is common style for card. this requiere flex container
-// export const posStyle = {
-//   width: "32.7%",
-//   borderRadius: "10px",
-//   marginTop: "30px",
-//   padding: "10px",
-
-// }
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { removePicAction } from "../../redux/actions/picAction";
 
 const CardContainer = styled("div")(({ theme }) => ({
   // height: "100px",
@@ -68,33 +62,34 @@ const CardContainer = styled("div")(({ theme }) => ({
 }));
 
 interface Props {
-  id: string;
-  nickName: string;
+  username: string;
   photo: any;
   address: string;
-  phone: string;
+  fullname: string;
+  id:string
 }
 
-const TalentsCard = ({ id, nickName, photo, address, phone }: Props) => {
+const PicCard = ({ username, photo, address, fullname, id }: Props) => {
   const dispatch = useDispatch();
   const userDetail = [
     {
       Icon: FaceIcon,
-      text: nickName,
+      text: username,
+    },
+    {
+      Icon: AccountBoxIcon,
+      text: fullname,
     },
     {
       Icon: HomeIcon,
       text: address,
     },
-    {
-      Icon: LocalPhoneIcon,
-      text: phone,
-    },
   ];
 
-  const handleRemoveTalent = () => {
-    dispatch(removeTalentAction(id));
-  };
+  const handleRemovePic = () => {
+    dispatch(removePicAction(id))
+  }
+  
   const renderUserDetail = userDetail.map((detail, index) => {
     return (
       <div key={index} className="user-detail-item">
@@ -112,7 +107,7 @@ const TalentsCard = ({ id, nickName, photo, address, phone }: Props) => {
       </div>
       <div className="user-detail">{renderUserDetail}</div>
       <IconButton
-        onClick={handleRemoveTalent}
+        onClick={handleRemovePic}
         sx={{
           position: "absolute",
           top: "-5px",
@@ -130,4 +125,4 @@ const TalentsCard = ({ id, nickName, photo, address, phone }: Props) => {
   );
 };
 
-export default TalentsCard;
+export default PicCard;
