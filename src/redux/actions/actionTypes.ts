@@ -24,6 +24,11 @@ export const SET_COMPANY = "SET_COMPANY";
 export const SET_LOADING_COMPANY = "SET_LOADING_COMPANY";
 export const UNSET_LOADING_COMPANY = "UNSET_LOADING_COMPANY";
 
+export const CREATE_COMPANY = "CREATE_COMPANY"; //used by saga
+export const ADD_COMPANY = "ADD_COMPANY";
+
+
+
 //PIC
 export const GET_PIC = "GET_PIC";
 export const SET_PIC = "SET_PIC";

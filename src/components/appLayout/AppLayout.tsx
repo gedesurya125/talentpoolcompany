@@ -14,6 +14,7 @@ import AddTalentModal from "../modal/addTalentModal/AddTalentModal";
 import AddPicModal from "../modal/addPicModal/AddPicModal";
 import UserMenu from "./UserMenu";
 import type { AppModal } from "./UserMenu";
+import AddCompanyModal from "../modal/addCompanyModal/AddCompanyModal";
 
 const drawerWidth = 240;
 
@@ -177,7 +178,7 @@ const AppLayout = (props: Props) => {
         open={modalOpen.addPicModal}
         handleClose={() => handleCloseModal("addPicModal")}
       />
-      <AddTalentModal
+      <AddCompanyModal
         open={modalOpen.addCompanyModal}
         handleClose={() => handleCloseModal("addCompanyModal")}
       />

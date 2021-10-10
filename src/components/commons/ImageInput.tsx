@@ -4,7 +4,7 @@ import { styled } from "@mui/material/styles";
 import AddAPhotoIcon from "@mui/icons-material/AddToPhotos";
 import { Typography } from "@mui/material";
 import { baseURL } from "../../redux/apis/setupAPI";
-import * as appColor from "../../settings/appColor";
+// import * as appColor from "../../settings/appColor";
 
 const ImageIputContainer = styled("div")(({ theme }) => ({
   height: "150px",

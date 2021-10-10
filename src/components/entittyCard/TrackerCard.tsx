@@ -116,11 +116,11 @@ const TrackerCard = ({ tracker }: Props) => {
   const userDetail = [
     {
       Icon: FaceIcon,
-      text: talents.fullname,
+      text: talents?.fullname || "anonymous",
     },
     {
       Icon: HomeIcon,
-      text: talents.address,
+      text: talents?.address || "anonymous",
     },
   ];
 
@@ -178,7 +178,7 @@ const TrackerCard = ({ tracker }: Props) => {
       <CardContainer>
         <UserContainer>
           <div className="user-photo">
-            <img src={selectPhotoSource(talents.photo, baseURL)} alt="..." />
+            <img src={selectPhotoSource(talents?.photo, baseURL)} alt="..." />
           </div>
           <div className="user-detail">{renderUserDetail}</div>
         </UserContainer>
