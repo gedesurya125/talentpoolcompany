@@ -13,6 +13,7 @@ const ListContainer = styled("div")(({ theme }) => ({
   // justifyContent: 'center',
   alignItems: "center",
   position: "relative",
+  marginBottom: '1em',
   "& .my-list": {
     marginBlockStart: "0px",
     marginBlockEnd: "0.5em",
@@ -21,7 +22,7 @@ const ListContainer = styled("div")(({ theme }) => ({
 }));
 
 interface Props extends JobVacancyType {
-  handleDelete: () => void;
+  handleDelete: (dateCreated:string, description:string) => void;
 }
 
 const VacancyListCard = (props: Props) => {
@@ -47,7 +48,7 @@ const VacancyListCard = (props: Props) => {
           props.requirement.map((req, index) => <li key={index}>{req}</li>)}
       </ul>
       <IconButton
-        onClick={() => {}}
+        onClick={() => props.handleDelete(props.dateCreated, props.description)}
         sx={{
           position: "absolute",
           top: "5px",

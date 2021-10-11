@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CommonModal from "../commonMoal/CommonModal";
-import { CompanyType } from "../../../redux/apis/companyAPI";
+import { CompanyType, JobVacancyType } from "../../../redux/apis/companyAPI";
 import ImageInput from "../../commons/ImageInput";
 import { defaultUserPhoto } from "../../../settings/defaultResources";
 import { TextField, Button, Typography } from "@mui/material";
@@ -8,6 +8,10 @@ import { styled } from "@mui/material/styles";
 import AddIcon from "@mui/icons-material/Add";
 import VacancyListCard from "./VacancyListCard";
 import AddVacancyModal from "./AddVacancyModal";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../redux/rootReducer";
+import { CircularProgress } from "@mui/material";
+import { createCompanyAction } from "../../../redux/actions/companyAction";
 
 interface Props {
   open: boolean;
@@ -32,6 +36,9 @@ const ListContainer = styled("div")(({ theme }) => ({
 }));
 
 const AddCompanyModal = ({ open, handleClose }: Props) => {
+  const dispatch = useDispatch();
+  const companyReducer = useSelector((state: RootState) => state.company);
+
   const [openVacancyModal, setOpenVacancyModal] = useState(false);
   const [company, setCompany] = useState<CompanyType>({
     photo: defaultUserPhoto,
@@ -39,17 +46,31 @@ const AddCompanyModal = ({ open, handleClose }: Props) => {
     address: "",
     phone: "",
     website: "",
-    jobVacancy: [
-      {
-        roleOpen: ["Backend NodeJs", "Frontend developer"],
-        requirement: ["experience in Jest", "able to create API"],
-        hiringStatus: false,
-        description: "PrivyID is a great company",
-        dateCreated: "2021-10-10T00:00:00.000Z",
-      },
-    ],
+    jobVacancy: [],
   });
 
+  const handleResetDataCompany = () => {
+    setCompany({
+      photo: defaultUserPhoto,
+      name: "",
+      address: "",
+      phone: "",
+      website: "",
+      jobVacancy: [],
+    });
+  };
+
+  const handleGenericInputChange = (e: any) => {
+    setCompany((state: any) => ({
+      ...state,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleCreateCompany = () => {
+    // console.log("INI DATA YANG AKAN DI KIRIM :", company);
+    dispatch(createCompanyAction(company, handleClose))
+  };
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCompany((state) => ({
       ...state,
@@ -64,12 +85,23 @@ const AddCompanyModal = ({ open, handleClose }: Props) => {
     setOpenVacancyModal(false);
   };
 
+  const handleSaveVacancy = (vacancy: JobVacancyType) => {
+    setCompany((state) => ({
+      ...state,
+      jobVacancy: [...state.jobVacancy, vacancy],
+    }));
+  };
 
-
-
-  const handleJobVacancyDelete = () => {};
-
-
+  const handleJobVacancyDelete = (dateCreated: string, description: string) => {
+    const newVacancy = company.jobVacancy.filter(
+      (vac) =>
+        !(vac.dateCreated === dateCreated && vac.description === description)
+    );
+    setCompany((state) => ({
+      ...state,
+      jobVacancy: newVacancy,
+    }));
+  };
 
   const renderVacancyCard = () => {
     if (
@@ -86,13 +118,28 @@ const AddCompanyModal = ({ open, handleClose }: Props) => {
     ));
   };
   return (
-    <CommonModal open={open} title={"Add Company"} handleClose={handleClose} sx={{
-      '& .MuiFormControl-root':{
-        marginTop: '1em'
-      }
-    }}>
+    <CommonModal
+      open={open}
+      title={"Add Company"}
+      handleClose={handleClose}
+      sx={{
+        "& .MuiFormControl-root": {
+          marginTop: "1em",
+        },
+        "& .button-container": {
+          marginTop: "1em",
+          marginBottom: "1em",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "10px",
+        },
+      }}
+    >
       <ImageInput value={company.photo} onChange={handlePhotoChange} />
       <TextField
+        value={company.name}
+        onChange={handleGenericInputChange}
         variant="outlined"
         size="small"
         label="Name"
@@ -100,6 +147,8 @@ const AddCompanyModal = ({ open, handleClose }: Props) => {
         fullWidth
       />
       <TextField
+        value={company.address}
+        onChange={handleGenericInputChange}
         variant="outlined"
         size="small"
         label="Address"
@@ -107,6 +156,8 @@ const AddCompanyModal = ({ open, handleClose }: Props) => {
         fullWidth
       />
       <TextField
+        value={company.phone}
+        onChange={handleGenericInputChange}
         variant="outlined"
         size="small"
         label="Phone"
@@ -114,6 +165,8 @@ const AddCompanyModal = ({ open, handleClose }: Props) => {
         fullWidth
       />
       <TextField
+        value={company.website}
+        onChange={handleGenericInputChange}
         variant="outlined"
         size="small"
         label="Website"
@@ -136,7 +189,31 @@ const AddCompanyModal = ({ open, handleClose }: Props) => {
         </div>
         <div className="list-container">{renderVacancyCard()}</div>
       </ListContainer>
-      <AddVacancyModal open={openVacancyModal} handleClose={handleCloseVacancyModal}/>
+      <div className="button-container">
+        <Button
+          startIcon={
+            companyReducer.loading && (
+              <CircularProgress color="warning" size={20} />
+            )
+          }
+          onClick={handleCreateCompany}
+          variant="contained"
+        >
+          Save
+        </Button>
+        <Button
+          onClick={handleResetDataCompany}
+          variant="contained"
+          color="secondary"
+        >
+          Clear
+        </Button>
+      </div>
+      <AddVacancyModal
+        open={openVacancyModal}
+        handleClose={handleCloseVacancyModal}
+        handleSaveVacancy={handleSaveVacancy}
+      />
     </CommonModal>
   );
 };
