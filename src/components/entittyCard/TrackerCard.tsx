@@ -16,10 +16,11 @@ import { baseURL } from "../../redux/apis/setupAPI";
 const CardContainer = styled("div")(({ theme }) => ({
   ...posStyle,
   width: "100%",
-
+  // minHeight: '100%',
   marginTop: 0,
   background: appColor.backgroundColor.primary,
-  overflow: "hidden",
+  // minHeight: '1000px'
+  // overflow: "hidden",
   // cursor: "pointer",
 }));
 

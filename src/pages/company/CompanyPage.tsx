@@ -55,7 +55,7 @@ const CompanyPage = () => {
   return (
     // <Box width="100%" height="100vh">
     <Masonry
-      sx={{ overflow: "visible" }}
+      sx={{ overflow: "visible", display: { xs: "block", md: "grid" } }}
       columns={{ xs: 1, md: 2, lg: 3 }}
       spacing={1}
     >

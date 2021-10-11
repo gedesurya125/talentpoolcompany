@@ -51,7 +51,7 @@ const TrackerPage = () => {
   return (
     // <TrackerContainer>
     <Masonry
-      sx={{ overflow: "visible" }}
+      sx={{ overflow: "visible", display:{xs: 'block', md:'grid'} }}
       columns={{xs:1, md:2, lg:3}}
       spacing={1}
     >
