@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import { Button, Collapse, Box } from "@mui/material";
+import { Button, Collapse, Box, IconButton } from "@mui/material";
 import { posStyle } from "./commonStyle";
 import * as appColor from "../../settings/appColor";
 import { Typography } from "@mui/material";
@@ -11,15 +11,20 @@ import MasonryItem from "@mui/lab/MasonryItem";
 import VacancyDisplay from "./vacancyDisplay/VacancyDisplay";
 import { selectPhotoSource } from "../../functions/photoSource";
 import { baseURL } from "../../redux/apis/setupAPI";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { useDispatch } from "react-redux";
+import { removeCompanyAction } from "../../redux/actions/companyAction";
+
 
 const CompanyCardContainer = styled("div")(({ theme }) => ({
   ...posStyle,
   marginTop: 0,
-  minHeight: "300px",
+  // minHeight: "300px",
   width: "100%",
   backgroundColor: appColor.backgroundColor.primary,
   // padding: 0,
   // boxSizing: '',
+  position: 'relative',
   "& .company-card-header": {
     // height: "100px",
     width: "100%",
@@ -66,14 +71,20 @@ interface CompanyCardTypes {
   phone: string;
   jobVacancy: any[];
   website: string;
+  id:string
 }
 const CompanyCard = (props: CompanyCardTypes) => {
+  const dispatch = useDispatch();
   const [openVacancy, setOpenVacancy] = React.useState(false);
 
   const toggleVacancy = () => {
     setOpenVacancy((state) => !state);
   };
 
+  const handleRemoveCompany = () => {
+    // console.log('COMPANY WITH ID WILL BE DELETED', props.id)
+    dispatch(removeCompanyAction(props.id));
+  }
   return (
     <MasonryItem>
       <Box>
@@ -118,6 +129,21 @@ const CompanyCard = (props: CompanyCardTypes) => {
               <VacancyDisplay jobVacancy={props.jobVacancy} />
             </div>
           </Collapse>
+          <IconButton
+            onClick={handleRemoveCompany}
+            sx={{
+              position: "absolute",
+              top: "0px",
+              right: "0px",
+              padding: 0,
+              backgroundColor: "black",
+              "&:hover": {
+                backgroundColor: "red",
+              },
+            }}
+          >
+            <HighlightOffIcon />
+          </IconButton>
         </CompanyCardContainer>
       </Box>
     </MasonryItem>

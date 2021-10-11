@@ -6,8 +6,9 @@ import {
   setLoadingCompanyAction,
   setCompanyAction,
   addCompanyAction,
+  deleteCompanyAction,
 } from "../../actions/companyAction";
-import { createCompanyAPI, getAllCompany } from "../../apis/companyAPI";
+import { createCompanyAPI, getAllCompany, removeCompanyAPI } from "../../apis/companyAPI";
 
 export function* getAllCompanyWorker(
   action: type.Action
@@ -42,5 +43,21 @@ export function* createCompanyWorker(action:type.Action):Generator<any,any,any>{
   }catch(err:any){
     yield put(unsetLoadingCompanyAction());
     console.log('ERROR AT createCompanyWorker detail:', err.response)
+  }
+}
+
+export function* removeCompanyWorker(action:type.Action):Generator<any, any, any>{
+  try{
+    yield put(setLoadingCompanyAction());
+    const response = yield removeCompanyAPI(action.payload.data);
+    if(response.data){
+      yield put(deleteCompanyAction(action.payload.data));
+      yield put(unsetLoadingCompanyAction());
+    }else{
+      console.log('UNKNOWN DATA STRUCTURE at removeCompanyWorker, Details:', response)
+    }
+  }catch(err:any){
+    yield put(unsetLoadingCompanyAction());
+    console.log('ERR AT removeCompanyWorker DETAILS:', err.response)
   }
 }

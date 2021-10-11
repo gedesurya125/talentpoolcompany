@@ -46,6 +46,7 @@ const CompanyPage = () => {
         phone={comp.phone}
         jobVacancy={comp.jobVacancy}
         website={comp.website}
+        id={comp._id}
       />
     ));
   };

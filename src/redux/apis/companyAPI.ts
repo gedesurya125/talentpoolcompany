@@ -9,6 +9,7 @@ export interface JobVacancyType {
 }
 
 export interface CompanyType {
+  _id?:string;
   name: string;
   photo: any;
   address: string;
@@ -22,3 +23,5 @@ export interface CompanyType {
 export const getAllCompany = () => api.get("/company");
 export const createCompanyAPI = (company: CompanyType) =>
   api.post("/company", company);
+
+export const removeCompanyAPI = (companyId:string) => api.delete(`/company/${companyId}`);

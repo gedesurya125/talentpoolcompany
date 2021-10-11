@@ -21,3 +21,13 @@ export const addCompanyAction = (data: CompanyType): type.Action => ({
   type: type.ADD_COMPANY,
   payload: { data },
 });
+
+export const removeCompanyAction = (companyId:string):type.Action => ({ 
+  type: type.REMOVE_COMPANY,
+  payload: {data:companyId}
+})
+
+export const deleteCompanyAction = (companyId:string):type.Action => ({
+  type: type.DELETE_COMPANY,
+  payload: {data:companyId}
+})

@@ -28,7 +28,14 @@ const companyReducer = (state = initialState, action: type.Action) => {
           ...state.data,
           dataCompany: [...state.data.dataCompany, action.payload.data]
         }
+      };
+    case type.DELETE_COMPANY: return {
+      ...state,
+      data: {
+        ...state.data,
+        dataCompany: state.data.dataCompany.filter(comp => comp._id !== action.payload.data)
       }
+    }
     case type.SET_LOADING_COMPANY:
       return {
         ...state,

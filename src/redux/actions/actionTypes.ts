@@ -26,7 +26,8 @@ export const UNSET_LOADING_COMPANY = "UNSET_LOADING_COMPANY";
 
 export const CREATE_COMPANY = "CREATE_COMPANY"; //used by saga
 export const ADD_COMPANY = "ADD_COMPANY";
-
+export const REMOVE_COMPANY = "REMOVE_COMPANY"; //used by saga
+export const DELETE_COMPANY = "DELETE_COMPANY"; 
 
 
 //PIC
